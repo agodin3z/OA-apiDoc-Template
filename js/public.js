@@ -57,7 +57,7 @@ $(function () {
     init: function () {
       $.get ('api_project.json?t=' + new Date ().getTime ()).done (load.render).fail (function () {
         load.render ({
-          name: 'API 文件',
+          name: 'Archivo API',
           description: '',
           version: '0.0.0',
         })
@@ -70,7 +70,7 @@ $(function () {
           $('<h1 />').text (r.name)).append (
           $('<p />').text (r.description)).append (
           $('<div />').append ($('<i />')).append ($('<i />')).append ($('<i />'))).append (
-          $('<span />').text ('版本：v' + r.version + '')));
+          $('<span />').text ('Version：v' + r.version + '')));
     },
     hide: function (cb) {
       if (!load.$el) return ;
@@ -110,9 +110,9 @@ $(function () {
       
       var formats = {
         header: {title: 'Header', d4: 'Header', v: 'h'},
-        parameter: {title: '參數', d4: 'Parameter', v: 'p'},
-        success: {title: '成功', d4: 'Success 200', v: 's'},
-        error: {title: '錯誤', d4: 'Error 4xx', v: 'e'}
+        parameter: {title: 'Parameter', d4: 'Parameter', v: 'p'},
+        success: {title: 'Success', d4: 'Success 200', v: 's'},
+        error: {title: 'Error', d4: 'Error 4xx', v: 'e'}
       };
 
       main.$tabs = [];
@@ -144,10 +144,10 @@ $(function () {
                          $('<table />').append (
                            $('<thead />').append (
                              $('<tr />').append (
-                               $('<th />').addClass ('center').addClass ('is-need').text ('必須')).append (
-                               $('<th />').addClass ('key').text ('Key')).append (
-                               $('<th />').addClass ('type').text ('類型')).append (
-                               $('<th />').addClass ('desc').text ('敘述')))).append (
+                               $('<th />').addClass ('center').addClass ('is-need').text (' ')).append (
+                               $('<th />').addClass ('key').text ('Field')).append (
+                               $('<th />').addClass ('type').text ('Types')).append (
+                               $('<th />').addClass ('desc').text ('Description')))).append (
                            $('<tbody />').append (
                              field.map (function (u) {
                                return $('<tr />').append (
@@ -199,7 +199,7 @@ $(function () {
     init: function () {
       menu.$el.empty ();
       menu.$search = $('<form />').attr ('id', 'search').append (
-        $('<input />').val (params.val.q).attr ('placeholder', '你想找什麼？').prop ('required', true).keyup (function () {
+        $('<input />').val (params.val.q).attr ('placeholder', 'Are you looking for?').prop ('required', true).keyup (function () {
           params.update ('q', $(this).val ().trim ());
           menu.filter (params.val.q);
         })).submit (function () { return false; });
@@ -207,7 +207,7 @@ $(function () {
       menu.$apis = $('<div />').attr ('id', 'apis');
       menu.$el.append (menu.$search);
       menu.$el.append (menu.$apis);
-      menu.$el.append ($('<footer />').attr ('id', 'footer').text ('版型設計 by').append ($('<a />').attr ('href', 'https://www.ioa.tw/f=apidoc').attr ('target', '_blank').text ('OA Wu')).append ('，程式碼：').append ($('<a />').attr ('href', 'https://github.com/comdan66/OA-apiDoc-Template.git').attr ('target', '_blank').text ('GitHub')));
+      menu.$el.append ($('<footer />').attr ('id', 'footer').text ('Design:').append ($('<a />').attr ('href', 'https://www.ioa.tw/f=apidoc').attr ('target', '_blank').text ('OA Wu')).append (' - Translation:').append ($('<a />').attr ('href', 'https://andresgodinez.com/').attr ('target', '_blank').text ('agodin3z')).append (' - ').append ($('<a />').attr ('href', 'https://github.com/comdan66/OA-apiDoc-Template.git').attr ('target', '_blank').text ('GitHub')));
 
       if (menu.apis === null)
         $.get ('api_data.json?t=' + new Date ().getTime ())
@@ -257,8 +257,8 @@ $(function () {
       menu.$links = $(menu.$links.length ? menu.$links.reduce (function (p, n) { return p.concat (n); }) : []).map ($.fn.toArray);
 
       if (!menu.$links.length) {
-        menu.$apis.attr ('data-tip', '找不到任何 API');
-        main.$el.attr ('data-tip', '找不到任何 API 資訊');
+        menu.$apis.attr ('data-tip', 'No API found');
+        main.$el.attr ('data-tip', 'No API information found');
       } else {
         menu.$apis.removeAttr ('data-tip');
         main.$el.removeAttr ('data-tip');
